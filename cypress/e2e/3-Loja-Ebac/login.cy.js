@@ -44,7 +44,7 @@ describe('Funcionalidade: login' , ()  => {
 
     });
 
-    it.only('Dever fazer login com sucesso - usando fixeture', () => {
+    it('Dever fazer login com sucesso - usando fixeture', () => {
         cy.fixture('perfil').then(dados =>{
         cy.get('[name="username"]').type(dados.usuario , { log:false })
         cy.get('.woocommerce-form > :nth-child(2) > [name="password"]').type(dados.senha , { log: false })
@@ -52,6 +52,13 @@ describe('Funcionalidade: login' , ()  => {
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('exist')
         })
         
+    });
+
+    it.only('Deve fazer login com sucesso - usando comandos customizados', () => {
+        
+        cy.login('gutss2caska@falconia.com', 'gutsamacaska')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('exist')
+
     });
 
 })
